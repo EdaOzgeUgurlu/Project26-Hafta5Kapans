@@ -6,18 +6,20 @@ class Program
     {
         List<Araba> arabalar = new List<Araba>(); // Arabaları tutacak liste
 
-        while (true) // NEDEN WHİLE DÖNGÜSÜ İÇİNDE
+        while (true) // Kullanıcıdan sonsuz değer almak için while döngüsü 
         {
+            Console.Clear();
+
             // Kullanıcıdan araba üretmek isteyip istemediğini sor
-            Console.WriteLine("Araba üretmek ister misiniz? (e/h)");
+            Console.WriteLine("Araba üretmek için e Çıkmak için h giriniz");
             string yanit = Console.ReadLine().ToUpper(); // Kullanıcının yanıtını al ve büyük harfe çevir
 
             // Eğer kullanıcı 'e' yanıtı verirse
+
             if (yanit == "E")
             {
                 Araba yeniAraba = new Araba(); // Yeni bir Araba nesnesi oluştur
-                yeniAraba.UretimTarihi = DateTime.Now; // Üretim tarihini otomatik olarak atayın
-               
+
                 // Seri numarasını al
                 Console.Write("Seri Numarasını girin: ");
                 yeniAraba.SeriNumarasi = Console.ReadLine();
@@ -38,29 +40,45 @@ class Program
                 int kapisayisi;
                 while (true)
                 {
-                    Console.Write("Kapı Sayısını girin (2/4) ");
-                    int kapisayisiGirdi = Convert.ToInt32(Console.ReadLine()); // Kullanıcıdan kapı sayısını al
+                    try // istenmeyen değer girişine karşı try-catch eklendi
+                    {
+                        Console.Write("Kapı Sayısını girin (2/4) ");
+                        int kapisayisiGirdi = Convert.ToInt32(Console.ReadLine()); // Kullanıcıdan kapı sayısını al
 
-                    // Sayısal bir değer kontrolü
-                    if (kapisayisiGirdi == 2)
-                    {
-                        yeniAraba.KapiSayisi = kapisayisiGirdi; // Kapı sayısını atayın
-                        break; // Eğer geçerliyse döngüden çık
-                    }
-                    else if (kapisayisiGirdi == 4)
-                    {
-                        yeniAraba.KapiSayisi = kapisayisiGirdi; // Kapı sayısını atayın
-                        break; // Eğer geçerliyse döngüden çık
+                        // Sayısal bir değer kontrolü
+                        if (kapisayisiGirdi == 2)
+                        {
+                            yeniAraba.KapiSayisi = kapisayisiGirdi; // Kapı sayısını atayın
+                            break; // Eğer geçerliyse döngüden çık
+                        }
+                        else if (kapisayisiGirdi == 4)
+                        {
+                            yeniAraba.KapiSayisi = kapisayisiGirdi; // Kapı sayısını atayın
+                            break; // Eğer geçerliyse döngüden çık
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Geçersiz bir değer girdiniz. Lütfen geçerli bir değer giriniz (2/4)."); // Uyarı mesajı
+                        }
 
                     }
-                    else
+                    catch (Exception)
                     {
-                        Console.WriteLine("Geçersiz bir sayı girdiniz. Lütfen sayısal bir değer girin."); // Uyarı mesajı
+                        Console.WriteLine("Geçersiz bir değer girdiniz. Lütfen geçerli bir değer giriniz (2/4)."); // Uyarı mesajı
                     }
+
 
                 }
 
+                yeniAraba.UretimTarihi = DateTime.Now; // Üretim tarihini otomatik olarak atayın
+                Console.WriteLine("Üretim Tarihi : " + yeniAraba.UretimTarihi);
+
                 arabalar.Add(yeniAraba); // Oluşturulan araba nesnesini listeye ekleyin
+
+
+
+            TekrarDeneme: //hatalı giriş kontrolü goto döngüsü ile sağlandı
 
                 // Kullanıcıya başka araba oluşturmak isteyip istemediğini sor
                 Console.WriteLine("Başka bir araba oluşturmak ister misiniz? (e/h)");
@@ -70,6 +88,19 @@ class Program
                 {
                     break; // Eğer hayırsa döngüden çık
                 }
+                else if (devam == "E")
+                {
+                    continue; // Eğer evetse döngüye devam et 
+                }
+                else
+                {
+                    Console.WriteLine("Hatalı giriş tekrar deneyin. ");
+                    goto TekrarDeneme;
+                }
+
+
+
+
             }
             else if (yanit == "H")
             {

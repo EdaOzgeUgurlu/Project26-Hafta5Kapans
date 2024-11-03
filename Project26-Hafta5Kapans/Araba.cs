@@ -9,7 +9,7 @@ namespace Project26_Hafta5Kapans
     internal class Araba
     {
         //propertyleri tanımlıyoruz
-        // nesne oluşturma taslağı
+        //nesne oluşturma taslağı
         public DateTime UretimTarihi { get; set; } // Arabanın üretim tarihi
         public string SeriNumarasi { get; set; } // Arabanın seri numarası
         public string Marka { get; set; } // Arabanın markası
