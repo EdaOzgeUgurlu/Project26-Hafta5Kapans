@@ -76,8 +76,6 @@ class Program
 
                 arabalar.Add(yeniAraba); // Oluşturulan araba nesnesini listeye ekleyin
 
-
-
             TekrarDeneme: //hatalı giriş kontrolü goto döngüsü ile sağlandı
 
                 // Kullanıcıya başka araba oluşturmak isteyip istemediğini sor
@@ -86,6 +84,12 @@ class Program
 
                 if (devam == "H")
                 {
+                    // Program sona ermeden önce, tüm arabaların seri numaralarını ve markalarını yazdır
+                    Console.WriteLine("\nÜretilen Arabalar:");
+                    foreach (Araba araba in arabalar)
+                    {
+                        Console.WriteLine($"Seri Numarası: {araba.SeriNumarasi}, Marka: {araba.Marka}");
+                    }
                     break; // Eğer hayırsa döngüden çık
                 }
                 else if (devam == "E")
@@ -97,9 +101,6 @@ class Program
                     Console.WriteLine("Hatalı giriş tekrar deneyin. ");
                     goto TekrarDeneme;
                 }
-
-
-
 
             }
             else if (yanit == "H")
@@ -113,12 +114,6 @@ class Program
                 Console.WriteLine("Geçersiz bir yanıt verdiniz. Lütfen 'e' veya 'h' tuşlayın.");
             }
         }
-
-        // Program sona ermeden önce, tüm arabaların seri numaralarını ve markalarını yazdır
-        Console.WriteLine("\nÜretilen Arabalar:");
-        foreach (var araba in arabalar)
-        {
-            Console.WriteLine($"Seri Numarası: {araba.SeriNumarasi}, Marka: {araba.Marka}");
-        }
+        Console.WriteLine("Çıkış yapılıyor");
     }
 }
